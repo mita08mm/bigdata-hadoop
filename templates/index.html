@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Noticias</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action="/buscar_noticias">
+            <div class="search-bar">
+                <div class="date-input">
+                    <label for="start-date">Fecha Inicial:&nbsp;&nbsp;</label>
+                    <input type="date" name="start_date" id="start-date">
+                </div>
+                <div class="date-input">
+                    <label for="end-date">Fecha Final:&nbsp;&nbsp;</label>
+                    <input type="date" name="end_date" id="end-date">
+                </div>
+                <button type="submit" id="search-news">Buscar Noticia</button>
+            </div>
+        </form>
+        <div class="news-list">
+            <!-- Noticias aquí -->
+            <div class="news-item">
+                <img src="/static/images/v16869_611.png" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Notifican a Camacho por caso de supuesta falsificación de firmas</h2>
+                    <p>El gobernador de Santa Cruz, Luis Fernando Camacho, fue notificado formalmente con una nueva denuncia en su contra, en esta ocasión por el caso de una supuesta falsificación de firmas.</p>
+                    <p class="news-date">Publicado: 2024-06-01</p>
+                    <p class="news-source">Fuente: El Deber</p>
+                </div>
+            </div> 
+            <!-- Repite este bloque para añadir más noticias -->
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Título de otra noticia</h2>
+                    <p>Descripción breve de la noticia.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="Los Tiempos">Fuente: Los Tiempos</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Otro titular de noticia</h2>
+                    <p>Otra breve descripción de la noticia.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="Opinión">Fuente: Opinión</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Noticia 4</h2>
+                    <p>Descripción breve de la noticia 4.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="El Deber">Fuente: El Deber</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Noticia 5</h2>
+                    <p>Descripción breve de la noticia 5.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="Los Tiempos">Fuente: Los Tiempos</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Noticia 6</h2>
+                    <p>Descripción breve de la noticia 6.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="Opinión">Fuente: Opinión</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Noticia 7</h2>
+                    <p>Descripción breve de la noticia 7.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="El Deber">Fuente: El Deber</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Noticia 8</h2>
+                    <p>Descripción breve de la noticia 8.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="Los Tiempos">Fuente: Los Tiempos</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Noticia 9</h2>
+                    <p>Descripción breve de la noticia 9.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="Opinión">Fuente: Opinión</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <img src="https://via.placeholder.com/150" alt="Noticia Imagen">
+                <div class="news-content">
+                    <h2>Noticia 10</h2>
+                    <p>Descripción breve de la noticia 10.</p>
+                    <p class="news-date">Publicado: 2024-05-30</p>
+                    <p class="news-source" data-source="El Deber">Fuente: El Deber</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
