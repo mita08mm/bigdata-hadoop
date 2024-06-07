@@ -32,7 +32,7 @@ cursor = conn.cursor()
 
 # Crear la tabla deber si no existe
 create_table_query = '''
-CREATE TABLE IF NOT EXISTS deber (
+CREATE TABLE IF NOT EXISTS articles (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
@@ -55,7 +55,7 @@ def config(uri):
     return driver
 
 # Función para capturar y guardar los datos en PostgreSQL
-def capture_and_save_data(driver, section):
+def capture_and_save_data(driver, section, content_date):
     wait = WebDriverWait(driver, 10)
     try:
         news_blocks = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'jsx-742874305.nota.linked')))
@@ -75,7 +75,6 @@ def capture_and_save_data(driver, section):
                 image_url = block.find_element(By.TAG_NAME, 'img').get_attribute('src')
                 article_url = block.find_element(By.CLASS_NAME, 'jsx-742874305.nota-link').get_attribute('href')
                 author_name = block.find_element(By.CLASS_NAME, 'author').text.strip() if block.find_elements(By.CLASS_NAME, 'author') else None
-                content_date = datetime.now().date()
 
                 # block.find_element(By.CLASS_NAME, 'jsx-742874305.nota-link').click()
 
@@ -85,10 +84,10 @@ def capture_and_save_data(driver, section):
 
                 # driver.back()
                 
-                print(description)
-
+                # print(description)
+                print(content_date)
                 cursor.execute('''
-                INSERT INTO deber (title, description, image_url, article_url, author_name, content_date, section, revista)
+                INSERT INTO articles (title, description, image_url, article_url, author_name, content_date, section, revista)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                 ''', (title, description, image_url, article_url, author_name, content_date, section, 'EL DEBER'))
                 
@@ -101,13 +100,30 @@ def capture_and_save_data(driver, section):
 
 # Generar URLs para todas las fechas de mayo y abril
 base_url = 'https://eldeber.com.bo/ultimas-noticias/'
-dates = [datetime(2024, 1, d) for d in range(1, 32)] + [datetime(2024, 5, d) for d in range(1, 31)]
+# dates = [datetime(2024, 1, d) for d in range(1, 32)] + [datetime(2024, 5, d) for d in range(1, 31)]
+dates = []
+
+# Función para verificar si una fecha es válida
+def is_valid_date(year, month, day):
+    try:
+        datetime(year, month, day)
+    except ValueError:
+        return False
+    return True
+
+# Crear la lista de fechas válidas
+for m in range(1, 7):
+    for d in range(1, 32):
+        if (m == 6 and d > 6):
+            break
+        if is_valid_date(2024, m, d):
+            dates.append(datetime(2024, m, d))
 
 for date in dates:
     url = base_url + date.strftime('%d-%m-%Y')
     print(url)
     driver = config(url)
-    capture_and_save_data(driver, 'Ultimas Noticias')
+    capture_and_save_data(driver, 'Ultimas Noticias', date.date())
     driver.quit()
 
 # Cerrar la conexión a la base de datos
