@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from get_data import write_news_file
+from get_Data import write_news_file
 from main import execute_hadoop_commands
 from main import fetch_articles
 

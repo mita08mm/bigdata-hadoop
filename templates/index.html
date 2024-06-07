@@ -19,6 +19,11 @@
                     <label for="end-date">Fecha Final:&nbsp;&nbsp;</label>
                     <input type="date" name="end_date" id="end-date">
                 </div>
+                <div>
+                    <label><input type="checkbox" name="source" value="Deber"> Deber</label>
+                    <label><input type="checkbox" name="source" value="Opinion"> Opinión</label>
+                    <label><input type="checkbox" name="source" value="Tiempos"> Tiempos</label>
+                </div>
                 <button type="submit" id="search-news">Buscar Noticia</button>
             </div>
         </form>
@@ -30,16 +35,11 @@
                     <div class="news-content">
                         <h2>{{item[1]}}</h2>
                         <p>{{item[2]}}</p>
-                        <!-- <p class="news-date">Publicado: 2024-06-01</p>
-                        <p class="news-source">Fuente: El Deber</p> -->
                         <p>{{item[4]}}</p>
                         <p>{{item[5]}}</p>
                     </div>
                 </div>
-                <li></li>
-                <li></li>
             {% endfor %}
-            <!-- Noticias aquí -->
         </div>
     </div>
 </body>
