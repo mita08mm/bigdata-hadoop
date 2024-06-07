@@ -17,7 +17,7 @@ drive_path = r'D:\\geckodriver.exe'
 # Opciones del navegador Firefox
 options = Options()
 options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
-options.headless = True  # Para ejecutar en modo headless
+# options.headless = True  # Para ejecutar en modo headless
 
 # Conexión a la base de datos PostgreSQL
 conn = psycopg2.connect(

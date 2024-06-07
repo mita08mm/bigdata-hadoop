@@ -97,3 +97,28 @@
     color: #fff;
     position: relative;
   }
+/* Estilo para los contenedores de los checkboxes */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+/* Estilo básico para cada checkbox */
+.checkbox-container label {
+  margin: 0 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Personalizar el aspecto del checkbox */
+.checkbox-container input[type="checkbox"] {
+  accent-color: #ff6700; /* Cambia el color de la casilla de verificación */
+  margin-right: 5px; /* Espacio entre el checkbox y la etiqueta */
+}
+
+/* Estilo al hacer hover sobre la etiqueta */
+.checkbox-container label:hover {
+  color: #e65d00;
+}
