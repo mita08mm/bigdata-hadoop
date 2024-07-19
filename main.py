@@ -19,9 +19,12 @@ def execute_hadoop_commands():
 
 # key_word = '{text}'
 # def fetch_articles(start_date = '2024-04-01', end_date = '2024-04-01'):
-def fetch_articles(start_date, end_date ):
+def fetch_articles(start_date, end_date, sources):
     file1 = open('output/sorted.txt', 'r')
     text = file1.readline().split().pop(0)
+
+    # Aquí debes asegurarte de que text es seguro para usar en SQL
+
     sql = f'''
     SELECT 
         id, 
@@ -33,15 +36,18 @@ def fetch_articles(start_date, end_date ):
         (
             (LENGTH(LOWER(title)) - LENGTH(REPLACE(LOWER(title), '{text}', ''))) / LENGTH('{text}') +
             (LENGTH(LOWER(description)) - LENGTH(REPLACE(LOWER(description), '{text}', ''))) / LENGTH('{text}')
-        ) AS {text}_count
+        ) AS text_count
     FROM articles
     WHERE
         (LOWER(title) LIKE '%{text}%' OR LOWER(description) LIKE '%{text}%') AND
         content_date >= '{start_date}' AND content_date <= '{end_date}'
-    ORDER BY
-        content_date DESC,
-        {text}_count DESC;
-    ''' 
+    '''
+
+    if sources and 'Todos' not in sources:
+        placeholders = ', '.join(f"'{source}'" for source in sources)
+        sql += f" AND revista IN ({placeholders})"
+
+    sql += f' ORDER BY text_count DESC, content_date DESC;'
 
     conn = psycopg2.connect(
         dbname="noticias",
@@ -51,12 +57,10 @@ def fetch_articles(start_date, end_date ):
     )
 
     cursor = conn.cursor()
-
-
     cursor.execute(sql)
-
     rows = cursor.fetchall()
     return rows
+
 
 # print(rows)
 

@@ -104,6 +104,21 @@ base_url = 'https://eldeber.com.bo/ultimas-noticias/'
 dates = []
 
 # Función para verificar si una fecha es válida
+# def is_valid_date(year, month, day):
+#     try:
+#         datetime(year, month, day)
+#     except ValueError:
+#         return False
+#     return True
+
+# # Crear la lista de fechas válidas
+# for m in range(1, 7):
+#     for d in range(1, 32):
+#         if (m == 6 and d > 6):
+#             break
+#         if is_valid_date(2024, m, d):
+#             dates.append(datetime(2024, m, d))
+
 def is_valid_date(year, month, day):
     try:
         datetime(year, month, day)
@@ -111,13 +126,12 @@ def is_valid_date(year, month, day):
         return False
     return True
 
-# Crear la lista de fechas válidas
-for m in range(1, 7):
+# Crear la lista de fechas válidas para todo el año 2023
+for m in range(1, 13):
     for d in range(1, 32):
-        if (m == 6 and d > 6):
-            break
-        if is_valid_date(2024, m, d):
-            dates.append(datetime(2024, m, d))
+        if is_valid_date(2023, m, d):
+            dates.append(datetime(2023, m, d))
+            
 
 for date in dates:
     url = base_url + date.strftime('%d-%m-%Y')

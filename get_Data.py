@@ -16,7 +16,7 @@ conectores = [
     "el", "la", "los", "las", "un", "una", "unos", "unas", "a", "ante", "bajo", "cabe", "con", 
     "contra", "de", "desde", "durante", "en", "entre", "hacia", "hasta", "mediante", "para", 
     "por", "según", "sin", "sobre", "tras", "versus", "vía", "y", "e", "ni", "que", "o", "u", 
-    "pero", "sino", "aunque", "mas", "como", "cuando", "donde", "mientras", "porque", "pues", 
+    "pero", "sino", "aunque", "mas", "más", "como", "cuando", "donde", "mientras", "porque", "pues", 
     "ya que", "puesto que", "para que", "a fin de que", "a pesar de que", "si", "con tal que", 
     "siempre que", "a menos que", "además", "incluso", "también", "tampoco", "por consiguiente", 
     "por lo tanto", "así que", "entonces", "luego", "después", "mientras tanto", "entretanto", 
@@ -33,15 +33,22 @@ def remove_connectores(conector):
 
     return conector
 
-def write_news_file(start_date = '2024-04-01', end_date = '2024-04-01'):
+def write_news_file(start_date = '2024-04-01', end_date = '2024-04-01', sources=None):
     cursor = conn.cursor()
+    source_filter = ""
+    if sources:
+        placeholders = ', '.join(["%s"] * len(sources))
+        source_filter = f"AND revista IN ({placeholders})"
+    
+    query = f"""
+    SELECT title, description 
+    FROM articles 
+    WHERE content_date >= %s AND content_date <= %s {source_filter}
+    ORDER BY content_date DESC
+    """
 
-    query = f"SELECT title, description FROM articles WHERE content_date >= '{start_date}' AND content_date <= '{end_date}'"
-
-    title = 'title'
-    description= 'description'
-
-    cursor.execute(query, (title, description))
+    params = [start_date, end_date] + sources if sources else [start_date, end_date]
+    cursor.execute(query, params) 
 
     rows = cursor.fetchall()
 

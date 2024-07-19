@@ -205,7 +205,7 @@ def save_article(news_data):
 
 # Inicio del scraping
 
-scrape_news("11/01/2023", "11/30/2023")
+scrape_news("07/01/2023", "07/18/2023")
 # scrape_news("12/01/2023", "12/31/2023")
 #04/01/2024", "04/30/2024"
 #03/01/2024", "03/31/2024"

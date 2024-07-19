@@ -13,12 +13,13 @@ def index():
 def buscar_noticias():
     start_date = request.form.get('start_date')
     end_date = request.form.get('end_date')
+    selected_sources = request.form.getlist('source')
 
-    write_news_file(start_date, end_date)
+    write_news_file(start_date, end_date,selected_sources)
     execute_hadoop_commands()
 
-    articles = fetch_articles(start_date, end_date)
-
+    # articles = fetch_articles(start_date, end_date)
+    articles = fetch_articles(start_date, end_date, selected_sources)
     # main: list de notitial
 
     print(articles)
